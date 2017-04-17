@@ -3,15 +3,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../../styles/Editor.scss';
 import * as constants from '../constants';
-import * as d3 from "d3";
+//import * as d3 from "d3";
 
 class Dots extends Component {
-
   render(){
-    console.log("Dots.render()")
-    console.log(`JSON.stringify(this.props) ${JSON.stringify(this.props)}`)
     var _self = this;
-
     var data = this.props.data.splice(1);
     data.pop();
 
@@ -25,7 +21,6 @@ class Dots extends Component {
         key={i}
         />)
     });
-
     return (<g>{circles}</g>)
   }
 }
@@ -36,13 +31,12 @@ Dots.propTypes = {
     y: PropTypes.func
 }
 
-const Layer = ({dots, onClick}) => {
-  console.log(`dots = ${JSON.stringify(dots)}`)
-  console.log(`onClick = ${JSON.stringify(onClick)}`)
-
+const Layer = ({data, x, y}) => {
   return (
     <div>
-      <Dots data={dots} onClick={onClick}/>
+      <svg>
+        <Dots data={data} x={x} y={y} />
+      </svg>
     </div>
   );
 }
