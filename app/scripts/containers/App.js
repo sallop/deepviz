@@ -46,12 +46,20 @@ const App = () => {
         }))
         .rangeRound([0,w]);
 
+  let ret = d3.extent(data, function(d){
+        console.log(`d.date = ${d.date}`)
+          return d.date;
+        })
+  console.log(`ret = ${ret}`)
+
+
   let y = d3.scale.linear()
-    .domain([0, d3.max(data, function(d){
+    .domain([0, d3.max(data, function(d){ // set the input domain
       console.log(`d.count = ${d.count}`)
-      return d.count + 100;
+      return d.count;
+      //return d.count + 100;
     })])
-    .range([h,0]);
+    .range([h,0]); // set the output range
 
   return (
   	<div className={styles.app}>
@@ -61,8 +69,7 @@ const App = () => {
 }
 
 const mapStateToProps = (state) => ({
-  editor : state.editor,
-  members: state.members
+  editor : state.editor, members: state.members
 })
 
 const mapDispatchToProps = dispatch => ({

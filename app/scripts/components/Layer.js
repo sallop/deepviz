@@ -17,7 +17,7 @@ class Dots extends Component {
         cy={_self.props.y(d.count)}
         fill="#7dc7f4"
         stroke="#3f5175"
-        strokeWidth="5px"
+        strokeWidth="1px"
         key={i}
         />)
     });
@@ -40,5 +40,12 @@ const Layer = ({data, x, y}) => {
     </div>
   );
 }
+
+Layer.propTypes = {
+  data: PropTypes.array,
+    x: PropTypes.func,
+    y: PropTypes.func
+}
+
 
 export default Layer;
